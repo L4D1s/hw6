@@ -4,6 +4,8 @@ import InfoBlock from "./components/info-block/InfoBlock";
 import InfoList from "./components/cards/list/InfoList";
 import MoreButton from "./components/buttons/more/MoreButton";
 import LinksList from "./components/links/LinksList";
+import AlphabeticalFilter from "./components/filters/AlphabeticalFilter/AlphabeticalFilter";
+import FilterController from "./components/filters/FilterController";
 
 const services = [
     {type: "услуги", description: "H.Lorem ipsum dolor sit amet."},
@@ -62,7 +64,11 @@ function App() {
                            content={mainContentSection.content}>
                     <LinksList/>
                 </InfoBlock>
-                <InfoList data={services} gridStyle={grid}/>
+                <FilterController data={services} controls={[<AlphabeticalFilter />]}>
+                    {(filtered) => (
+                        <InfoList data={filtered} gridStyle={grid}/>
+                    )}
+                </FilterController>
             </Section>
         </div>
     );
